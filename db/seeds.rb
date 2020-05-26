@@ -5,12 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'hash_dot'
-require 'rest-client'
-require 'json'
-require 'pry'
 
+require './lib/json_by_url'
 
-rm = JSON.parse(RestClient.get 'https://www.bovada.lv/services/sports/event/v2/events/A/description')
-binding.pry
-rm
+rm = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/description'
+puts rm.json.length
