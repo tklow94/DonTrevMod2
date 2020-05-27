@@ -1,0 +1,18 @@
+<h1>Signup!</h1>
+
+<%= form_for :user, url: '/users' do |f| %>
+<% if @user.errors.any? %>
+<%= pluralize(@user.errors.count, "error")%>
+<% @user.errors.full_messages.each do |message|%>
+<ul>
+<li><%= message %></li>
+</ul>
+<% end %>
+<% end %>
+  UserName: <%= f.text_field :username %>
+  Email: <%= f.text_field :email %>
+  Password: <%= f.password_field :password %>
+  Password Confirmation: <%= f.password_field :password_confirmation %>
+  <%= f.submit "Submit" %>
+
+<% end %>

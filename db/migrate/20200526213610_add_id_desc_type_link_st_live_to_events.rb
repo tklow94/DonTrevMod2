@@ -1,6 +1,6 @@
 class AddIdDescTypeLinkStLiveToEvents < ActiveRecord::Migration[6.0]
   def change
-    add_column :events, :id, :integer
+    # add_column :events, :id, :integer
     add_column :events, :description, :string
     add_column :events, :type, :string
     add_column :events, :link, :string
