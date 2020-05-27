@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_05_27_004040) do
-=======
-ActiveRecord::Schema.define(version: 2020_05_27_003054) do
->>>>>>> 8ae04217d5d58848f55a88aeb087d55cd96c1d45
+ActiveRecord::Schema.define(version: 2020_05_27_170241) do
 
   create_table "bets", force: :cascade do |t|
     t.string "amount"
@@ -41,7 +37,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_003054) do
   end
 
   create_table "sports", force: :cascade do |t|
-    t.string "name"
+    t.string "sport_name"
+    t.string "sub_name"
   end
 
   create_table "users", force: :cascade do |t|
