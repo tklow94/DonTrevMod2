@@ -14,41 +14,30 @@ ActiveRecord::Schema.define(version: 2020_05_27_003054) do
 
   create_table "bets", force: :cascade do |t|
     t.string "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "competitor", force: :cascade do |t|
     t.string "name"
     t.boolean "is_team"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "event_id"
     t.string "description"
-    t.string "type"
+    t.string "event_type"
     t.string "link"
     t.datetime "start_time"
-    t.boolean "live"
     t.datetime "last_modified"
     t.integer "sport_id"
   end
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sports", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

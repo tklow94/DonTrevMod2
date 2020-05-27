@@ -1,15 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require './lib/json_by_url'
 
+Event.destroy_all
+Sport.destroy_all
+
 def conv_epoch(epoch)
-    Time.at(epoch.to_i / 1000).to_datetime
+    Time.at(epoch.to_i / 1000).to_datetime #trim milliseconds from epoch time
 end
 
 resp = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/description'
@@ -18,15 +13,19 @@ resp = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/de
 if resp.clean
     data = resp.json
 
+    byebug
     data.each do |league|
-        league["events"].each do |event|
+
+        sport = Sport.find_or_create_by(name: league["path"][1]["sportCode"])
+
+        league["events"].each do |event|  #BigO faster to push into array and create at "once"?
             bldr = {description: event["description"], link: event["link"], event_id: event["id"],
-                        start_time: conv_epoch(event["startTime"]),
-                        live: event["live"], last_modified: conv_epoch(event["lastModified"])}
+                        start_time: conv_epoch(event["startTime"]), sport_id: sport.id, event_type: event["type"],
+                        last_modified: conv_epoch(event["lastModified"])}
             puts "Creating event #{bldr[:description]}"
             Event.create(bldr)
         end
     end
 else
-    puts "Retrieval Error from https://www.bovada.lv/services/sports/event/v2/events/A/description"
+    puts "Error Retrieving: https://www.bovada.lv/services/sports/event/v2/events/A/description"
 end
