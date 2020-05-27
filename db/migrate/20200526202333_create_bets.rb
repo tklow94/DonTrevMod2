@@ -3,7 +3,6 @@ class CreateBets < ActiveRecord::Migration[6.0]
     create_table :bets do |t|
       t.string :amount
 
-      t.timestamps
     end
   end
 end
