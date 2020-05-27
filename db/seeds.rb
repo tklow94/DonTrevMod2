@@ -8,5 +8,25 @@
 
 require './lib/json_by_url'
 
-rm = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/description'
-puts rm.json.length
+def conv_epoch(epoch)
+    Time.at(epoch.to_i / 1000).to_datetime
+end
+
+resp = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/description'
+
+
+if resp.clean
+    data = resp.json
+
+    data.each do |league|
+        league["events"].each do |event|
+            bldr = {description: event["description"], link: event["link"], event_id: event["id"],
+                        start_time: conv_epoch(event["startTime"]),
+                        live: event["live"], last_modified: conv_epoch(event["lastModified"])}
+            puts "Creating event #{bldr[:description]}"
+            Event.create(bldr)
+        end
+    end
+else
+    puts "Retrieval Error from https://www.bovada.lv/services/sports/event/v2/events/A/description"
+end

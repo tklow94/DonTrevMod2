@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_213610) do
+ActiveRecord::Schema.define(version: 2020_05_27_003054) do
 
   create_table "bets", force: :cascade do |t|
     t.string "amount"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_213610) do
     t.string "link"
     t.datetime "start_time"
     t.boolean "live"
+    t.datetime "last_modified"
+    t.integer "sport_id"
   end
 
   create_table "leagues", force: :cascade do |t|
