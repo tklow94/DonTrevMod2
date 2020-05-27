@@ -1,0 +1,46 @@
+<Login>
+
+
+
+
+
+View Sports Available   ->  Sport Selector Page
+
+Sport Selector Page, (lists # of bets available per sport, has link to individual sport page)
+
+ESports Markets Available (Sports Controller / View)
+
+@sport_types = Sport.find_by(params[:sport_name])
+
+View     @sport_types.each {|x|   
+<h1>x.name
+                x.events.each
+                link_to }
+                link_to "cs-go-dreamhack-masters-spring-2020
+                link_to "other-esports"  (17 bets available)
+
+
+Back to Sports Selection Screen
+
+
+
+
+All Hockey Events        Filter by Type   checkboxes Other-Hockey/ENHL
+
+Hockey
+Event1 Link
+Event2 Link
+Event3 Link
+
+Hockey - Other-Hockey/ENHL
+Event1 Link
+Event2 Link
+Event3 Link
+Event4 Link
+Event5 Link
+
+Hockey - Other-Hockey/Russia
+Event1 Link
+Event2 Link
+Event3 Link
+
