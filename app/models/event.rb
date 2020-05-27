@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
-    belongs_to :teams
+    has_many :competitors
     has_many :bets
+    belongs_to :sport
 end
