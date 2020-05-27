@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_190811) do
+ActiveRecord::Schema.define(version: 2020_05_27_211950) do
 
   create_table "competitors", force: :cascade do |t|
     t.string "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_190811) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.integer "event_id"
+    t.integer "bovada_id"
     t.string "description"
     t.string "event_type"
     t.string "link"
@@ -35,9 +35,12 @@ ActiveRecord::Schema.define(version: 2020_05_27_190811) do
   end
 
   create_table "markets", force: :cascade do |t|
-    t.integer "market_id"
+    t.integer "bovada_id"
     t.string "period"
     t.string "market_type"
+    t.string "description"
+    t.boolean "live"
+    t.integer "event_id"
   end
 
   create_table "outcomes", force: :cascade do |t|

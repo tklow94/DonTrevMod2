@@ -9,5 +9,8 @@ class OutcomeTableAndJoin < ActiveRecord::Migration[6.0]
       t.string :bovada_status
       t.string :bovada_type
     end
+
+    add_column :markets, :description, :string
+    add_column :markets, :live, :boolean
   end
 end
