@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_170241) do
+ActiveRecord::Schema.define(version: 2020_05_27_190811) do
 
-  create_table "bets", force: :cascade do |t|
-    t.string "amount"
-  end
-
-  create_table "competitor", force: :cascade do |t|
+  create_table "competitors", force: :cascade do |t|
     t.string "name"
     t.boolean "is_team"
+    t.integer "competitor_id"
+  end
+
+  create_table "competitors_events", id: false, force: :cascade do |t|
+    t.integer "competitor_id", null: false
+    t.integer "event_id", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -32,8 +34,20 @@ ActiveRecord::Schema.define(version: 2020_05_27_170241) do
     t.integer "sport_id"
   end
 
-  create_table "leagues", force: :cascade do |t|
-    t.string "name"
+  create_table "markets", force: :cascade do |t|
+    t.integer "market_id"
+    t.string "period"
+    t.string "market_type"
+  end
+
+  create_table "outcomes", force: :cascade do |t|
+    t.string "american"
+    t.string "decimal"
+    t.string "description"
+    t.integer "market_id"
+    t.integer "bovada_id"
+    t.string "bovada_status"
+    t.string "bovada_type"
   end
 
   create_table "sports", force: :cascade do |t|
