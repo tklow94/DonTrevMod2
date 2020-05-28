@@ -12,14 +12,15 @@
 <% end %>
 
 <br>
-<%= form_tag "add_watched" do %>
+<%= form_tag track_new_path do %>
+    <%= hidden_field_tag 'kind', 'Comp'%>
     <table>
         <tr>
             <th>Name</th>
             <th># of Bets Available</th>
-            <th></th>
+            <th><%= submit_tag "Follow" %></th>
         </tr>
-    <% @comp.last(100).each do |c| %>
+    <% @comp.each do |c| %>
         <tr>
             <td><%= link_to c.name, c %></td>
             <td><%= c.events.count %></td>

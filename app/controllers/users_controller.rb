@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       # if @user.save 
         session[:user_id] = @user.id
         # redirect_to '/'
-        redirect_to '/users'
+        redirect_to home_path
       else
         render :new
       end
