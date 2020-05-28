@@ -14,16 +14,16 @@ def conv_epoch(epoch)
 end
 
 system "clear"
-puts "Fetching Current Bovada Info..."
+puts "Fetching Current Info from Bovada.lv ..."
 resp = JSONByURL.new 'https://www.bovada.lv/services/sports/event/v2/events/A/description'
 
 
 if resp.clean
     data = resp.json
 
-    sports_import, events_import, markets_import, outcomes_import = [], [], [], []
+    involvements_import, events_import = [], []
+
     data.each do |league|
-        
         link = league["path"][0]["link"]
         sport_attributes = link.split("/", 3)[1..]
         sport = Sport.find_or_create_by(sport_name: sport_attributes[0], sub_name: sport_attributes[1])
@@ -36,6 +36,14 @@ if resp.clean
                         last_modified: conv_epoch(e["lastModified"])}
             
             event = Event.new(bldr) #WOULD BE MODIFIED TO AVOID DUPLICATE EVENT DATA IN LOG-LIVE-DATA PHASE
+            
+            comps = e["competitors"]
+            unless comps.empty?
+                comps.each do |z|
+                    comp = Competitor.find_or_create_by(name: z["name"], bovada_id: z["id"].split("-")[1])
+                    inv = event.involvements.build(competitor: comp)
+                end
+            end
 
             e["displayGroups"].each do |b|
                 
@@ -61,14 +69,17 @@ if resp.clean
             events_import << event  #markets and outcomes built, headed for next Event
         end
     end
+    
     system "clear"
     puts "Generating Models! Hold on to your butts..."
     Event.import events_import, recursive: true
     system "clear"
     puts "Complete!"
     puts "Created #{Sport.count} Sport models"
+    puts "Created #{Competitor.count} Competitor models"
     puts "Created #{Event.count} Event models"
     puts "Created #{Market.count} Market models"
+    puts "Created #{Involvement.count} Involvement models"
     puts "Created #{Outcome.count} Outcome models"
 
 

@@ -1,0 +1,63 @@
+<h3>My Favorite Teams/Players:</h3>
+<% unless @user.my("Competitor").empty? %>
+
+    <div>
+    <% @user.my("Competitor").each do |e| %>
+
+        <%= link_to e.name, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h5>Not Tracking Any Competitors</h5>
+<% end %>
+<%= link_to "Track A New Player/Team, 'account#add'" %>
+</div>
+
+<h3>My Events:</h3>
+<% unless @user.my("Event").empty? %>
+
+    <div>
+    <% @user.my("Event").each do |e| %>
+
+        <%= link_to e.display, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h5>Not Tracking Any Events</h5>
+<% end %>
+<%= link_to "Track An Event, 'account#add'" %>
+</div>
+
+<h3>My Sports:</h3>
+<% unless @user.my("Sport").empty? %>
+
+    <div>
+    <% @user.my("Sport").each do |e| %>
+
+        <%= link_to e.sport_name, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h5>Not Tracking Any Sports</h5>
+<% end %>
+<%= link_to "Follow a New Sport, 'account#add'" %>
+</div>
+
+<h3>Wagers I'm Following:</h3>
+<% unless @user.my("Market").empty? %>
+
+    <div>
+    <% @user.my("Market").each do |e| %>
+
+        <%= link_to e.description, "www.google.com" %><br />
+
+    <% end %>
+
+<% else %>
+    <h5>Not Tracking Any Wagers</h5>
+<% end %>
+<%= link_to "Track A Wager, 'account#add'" %>
+</div>

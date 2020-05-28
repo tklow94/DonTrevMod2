@@ -10,24 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_000037) do
+ActiveRecord::Schema.define(version: 2020_05_28_041346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "competitors", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_team"
-    t.integer "competitor_id"
-  end
-
-  create_table "competitors_events", id: false, force: :cascade do |t|
-    t.integer "competitor_id", null: false
-    t.integer "event_id", null: false
+    t.string "bovada_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
     t.integer "bovada_id"
     t.string "description"
     t.string "event_type"
@@ -35,6 +28,11 @@ ActiveRecord::Schema.define(version: 2020_05_28_000037) do
     t.datetime "start_time"
     t.datetime "last_modified"
     t.integer "sport_id"
+  end
+
+  create_table "involvements", force: :cascade do |t|
+    t.integer "competitor_id", null: false
+    t.integer "event_id", null: false
   end
 
   create_table "markets", force: :cascade do |t|
