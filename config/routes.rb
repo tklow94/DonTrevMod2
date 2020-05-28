@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   
   get '/account' => 'account#home'
 
-  get '/choose/competitors' => 'competitors#choose'
+  get '/choose/competitors' => 'competitors#display'
+  post '/choose/competitors' => 'competitors#filter'
 
   resources :sports
   resources :events

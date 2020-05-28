@@ -1,10 +1,17 @@
 class CompetitorsController < ApplicationController
-    def choose
-        if params[:sport_name]
-            @comp = Competitor.all.where(sport_name: params[:sport_name])
+    def display
+        @selected = params[:sport_name]
+        if @selected
+            @comp = Competitor.all.where(sport_name: @selected)
         else
             @comp = Competitor.all
         end
+        @sports = Sport.get_names("Comp")
+    end
+
+    def filter
+        @selected = params[:sport_name]
+        redirect_to choose_competitors_path(sport_name: @selected)
     end
 
     def show
