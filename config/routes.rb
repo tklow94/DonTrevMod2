@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  
   # get 'home/index'
   # root 'home#index'
   resources :users
+
+  get '/welcome' => 'welcomes#index'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
