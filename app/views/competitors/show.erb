@@ -1,0 +1,24 @@
+<h3>Name: <%= @comp.name %></h3>
+<h3>Bovada ID: <%= @comp.bovada_id %></h3>
+<h3>Primary Sport: <%= @comp.sport_name %></h3>
+
+<h4>Upcoming Events</h4>
+
+<table>
+    <tr>
+        <th>Sport</th>
+        <th>Description</th>
+        <th>Start Date / Time</th>
+        <th># of Bets for Event</th>
+        <th>Odds Last Updated</th>
+    </tr>
+    <% @comp.events.each do |e| %>
+        <tr>
+            <td><%= e.sport.sub_name %></td>
+            <td><%= e.description %></td>
+            <td><%= e.starts_in %></td>
+            <td><%= e.markets.count %></td>
+            <td><%= e.last_modified %></td>
+        </tr>
+    <% end %>
+</table>

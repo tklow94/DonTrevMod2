@@ -26,7 +26,7 @@ if resp.clean
     data.each do |league|
         link = league["path"][0]["link"]
         sport_attributes = link.split("/", 3)[1..]
-        sport = Sport.find_or_create_by(sport_name: sport_attributes[0], sub_name: sport_attributes[1])
+        sport = Sport.find_or_create_by(sport_name: sport_attributes[0].titlecase, sub_name: sport_attributes[1].titlecase)
         
         puts "Building Models for #{link}"
 
@@ -40,7 +40,7 @@ if resp.clean
             comps = e["competitors"]
             unless comps.empty?
                 comps.each do |z|
-                    comp = Competitor.find_or_create_by(name: z["name"], bovada_id: z["id"].split("-")[1])
+                    comp = Competitor.find_or_create_by(sport_name: sport.sport_name, name: z["name"], bovada_id: z["id"].split("-")[1])
                     inv = event.involvements.build(competitor: comp)
                 end
             end

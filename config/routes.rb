@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   
   get '/account' => 'account#home'
 
+  get '/choose/competitors' => 'competitors#choose'
+
   resources :sports
-  resources :competitors
   resources :events
   resources :bets
+  resources :competitors, only: [:show]
 
 end
