@@ -1,3 +1,5 @@
 class Competitor < ApplicationRecord
-    has_and_belongs_to_many :events
+    has_many :involvements, inverse_of: :competitor
+    has_many :events, through: :involvements
+
 end

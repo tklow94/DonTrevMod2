@@ -1,0 +1,24 @@
+<h3>Start Following a Team / Player</h3>
+<%= form_tag "add_watched" do %>
+    <table>
+        <tr>
+            <th>League/Subset</th>
+            <th>Sport</th>
+            <th>Name</th>
+            <th># of Bets Available</th>
+            <th></th>
+        </tr>
+    <% @comp.last(100).each do |c| %>
+        <tr>
+            <td><%= c.events.first.sport.sub_name %></td>
+            <td><%= link_to c.sport_name, choose_competitors_path(sport_name: c.sport_name) %></td>
+            <td><%= link_to c.name, c %></td>
+            <td><%= c.events.count %></td>
+            <td>
+                <%= check_box_tag 'competitor_ids[]', c.id %>
+            </td>
+        </tr>
+
+    <% end %>
+    </table>
+<% end %>

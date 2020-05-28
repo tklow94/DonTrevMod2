@@ -11,6 +11,8 @@ class WatchList < ApplicationRecord
         return Event.find(model_id)
       when "Market"
         return Market.find(model_id)
+      when "Sport"
+        return Sport.find(model_id)
     end
   end
 
