@@ -1,7 +1,13 @@
 <h3>Start Following a Team / Player</h3>
 <%= form_tag choose_competitors_path do %>
-    <%= label_tag :Sport_Name %>
-    <%= select_tag :sport_name, options_for_select(@sports, @selected)%>
+    <div>
+        <%= label_tag "Sport" %>
+        <%= select_tag :sport_name, options_for_select(@sports, @selected[0]) %>
+    </div>
+    <div>
+        <%= label_tag "Subset (league)" %>
+        <%= select_tag :sub_name, options_for_select(@subs, @selected[1]) %>
+    </div>
     <%= submit_tag "Filter by Sport Name" %>
 <% end %>
 
@@ -9,14 +15,12 @@
 <%= form_tag "add_watched" do %>
     <table>
         <tr>
-            <th>League/Subset</th>
             <th>Name</th>
             <th># of Bets Available</th>
             <th></th>
         </tr>
     <% @comp.last(100).each do |c| %>
         <tr>
-            <td><%= c.sport_name %></td>
             <td><%= link_to c.name, c %></td>
             <td><%= c.events.count %></td>
             <td>
