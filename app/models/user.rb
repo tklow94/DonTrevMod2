@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :watch_lists
+    accepts_nested_attributes_for :watch_lists
     
     has_secure_password
     validates :username, :email, :password, presence: true

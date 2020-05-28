@@ -1,0 +1,33 @@
+<h3>Description: <%= @event.description %></h3>
+<h4>Sport: <%= @event.sport.sport_name %></h4>
+<h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url%></h6>
+<h6>Bovada ID: <%= @event.bovada_id %></h6>
+<br><br>
+
+<h4>Wagers for this Event</h4>
+
+<table>
+    <tr>
+        <th width = 100>Type</th>
+        <th width = 100>Period</th>
+        <th width = 500>Description</th>
+        <th width = 350>Outcomes</th>
+        <th>Price</th>
+    </tr>
+    <% @event.markets.each do |e| %>
+        <tr>
+            <td><%= e.market_type %></td>
+            <td><%= e.period %></td>
+            <td><%= e.description %></td>
+            <% e.outcomes.each do |o| %>
+                <td><%= o.description %></td>
+                <td><%= o.american %></td>
+            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>

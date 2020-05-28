@@ -13,10 +13,13 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   
-  get '/account' => 'account#home'
+  get '/account' => 'account#home', as: 'home'
 
   get '/choose/competitors' => 'competitors#display'
   post '/choose/competitors' => 'competitors#filter'
+
+  post '/watchlist/add' => 'account#add_watch_list', as: 'track_new'
+  get '/watchlist/remove' => 'account#remove_watch_list', as: 'remove_track'
 
   resources :sports
   resources :events
