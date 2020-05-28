@@ -1,9 +1,13 @@
 require './lib/json_by_url'
 
-Event.destroy_all
-Sport.destroy_all
-Market.destroy_all
-Outcome.destroy_all
+# Event.destroy_all
+# Sport.destroy_all
+# Market.destroy_all
+# Outcome.destroy_all
+
+# ActiveRecord::Base.connection.tables.each do |t|
+#     ActiveRecord::Base.connection.reset_pk_sequence!(t)
+# end
 
 def conv_epoch(epoch)
     Time.at(epoch.to_i / 1000).to_datetime #trim milliseconds from epoch time
@@ -58,9 +62,14 @@ if resp.clean
         end
     end
     system "clear"
-    puts "Generating Models! Hold on to your butts."
+    puts "Generating Models! Hold on to your butts..."
     Event.import events_import, recursive: true
-
+    system "clear"
+    puts "Complete!"
+    puts "Created #{Sport.count} Sport models"
+    puts "Created #{Event.count} Event models"
+    puts "Created #{Market.count} Market models"
+    puts "Created #{Outcome.count} Outcome models"
 
 
 else
