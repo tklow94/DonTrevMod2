@@ -12,13 +12,27 @@ class Event < ApplicationRecord
         "#{description} * #{sport.display} * #{format_start}"
     end
 
+    def url
+        "http://bovada.lv/sports" + link
+    end
+
     def format_start
         start_time.strftime("%B %d %Y")
     end
 
-    def starts_in
-        delta = (start_time - Time.now).to_i
-        return "Started" if delta <= 0
+    def time_until_start
+        time_calc(start_time)
+    end
+
+    def time_since_updated
+        time_calc(last_modified, true) + " ago"
+    end
+
+private
+    def time_calc(value, reverse = false)
+        delta = (value - Time.now).to_i
+        return "Started" if delta <= 0 && !reverse
+        delta = delta.abs if reverse
         res = []
 
         weeks = delta / 604800

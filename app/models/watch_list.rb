@@ -1,11 +1,11 @@
 class WatchList < ApplicationRecord
   belongs_to :user
-
+  
   def retrieve
     case kind
-      when "Competitor"
+      when "Comp"
         return Competitor.find(model_id)
-      when "Outcome"
+      when "Out"
         return Outcome.find(model_id)
       when "Event"
         return Event.find(model_id)
