@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+    skip_before_action :require_login
     def create
         user = User.find_by_email(params[:email])
         if user && user.authenticate(params[:password])
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     
       def destroy
         session[:user_id] = nil
-        redirect_to '/login'
+        redirect_to '/welcome'
       end
   
   end
