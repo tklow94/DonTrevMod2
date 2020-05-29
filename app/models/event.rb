@@ -3,7 +3,7 @@ include ActionView::Helpers::TextHelper
 class Event < ApplicationRecord
     has_many :involvements, inverse_of: :event
     has_many :competitors, through: :involvements
-    has_many :markets
+    has_many :markets, dependent: :destroy
     has_many :outcomes, through: :markets
     belongs_to :sport
 

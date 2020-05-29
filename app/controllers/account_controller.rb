@@ -8,7 +8,7 @@ class AccountController < ApplicationController
             end
         elsif params["model_id"]
             current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: params[:model_id])
-        else
+        else  #3rd way to create from 'sneaky' form
             hit = params.keys.find{|x| x.split(".").count > 1}
             current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: hit.split(".x")[0]) if hit
         end
@@ -26,6 +26,11 @@ class AccountController < ApplicationController
     def wipe_assoc
         current_user.watch_lists.destroy_all
         go_home
+    end
+
+    def data_maintenance
+        byebug
+        puts "checking totals"
     end
 
 private
