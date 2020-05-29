@@ -14,7 +14,8 @@ class AccountController < ApplicationController
     def remove_watch_list
         gotcha = current_user.watch_lists.find_by(kind: params[:kind], model_id: params[:model_id].to_i)
         gotcha.destroy if gotcha
-        go_home
+
+        redirect_back fallback_location: home_path
     end
 
 private

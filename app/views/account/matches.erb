@@ -3,7 +3,7 @@
 
     <div>
     <% @user.my("Event").each do |e| %>
-        <%= link_to "Delete!", remove_track_path(kind: "Event", model_id: e.id), method: :post %>
+        <a href ="<%= remove_track_path(kind: 'Event', model_id: e.id) %>"><%= image_tag "delete-person.png", size: "20x20" %></a>
         <%= link_to e.display, e %><br />
 
     <% end %>

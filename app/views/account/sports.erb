@@ -1,9 +1,9 @@
-<h3>My Sports:</h3>
+<h3>My Sports</h3>
 <% unless @user.my("Sport").empty? %>
 
     <div>
     <% @user.my("Sport").each do |e| %>
-
+        <a href ="<%= remove_track_path(kind: 'Sport', model_id: e.id) %>"><%= image_tag "delete-sport.png", size: "20x20" %></a>
         <%= link_to e.display, e %><br />
 
     <% end %>

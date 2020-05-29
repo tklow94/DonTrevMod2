@@ -1,6 +1,28 @@
-
-
-
-
-
-
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="col-5">
+            <br><br><br>
+            <h3>Uncut (Ruby) Gems</h3>
+            <h5>a Flatiron Mod2 Project</h5>
+            <h5>Trevor Low <%= image_tag "ruby.png", size: "25x25" %> Don Mallory</h5>
+            <br>
+            <p>A project that provides access to real-life wagering market data, courtesy of bovada.lv.  This site is for educational
+                purposes only (for now.)
+            </p>
+            <br>
+            <h3>Currently Serving:</h3>
+            <h6><%= Sport.count %> Sport categories, including</h6>
+            <h6> specifics on <%= Competitor.count %> teams and players</h6>
+            <h6>involved in <%= Event.count %> matches and events.</h6>
+            <h6>You will find <%= Market.count %> wagers listed</h6>
+            <h6>correlating to .... <%= Outcome.count %> outcomes! </h6>
+            <br>
+            <h6>Enjoy!</h6>
+            <br><br><br>
+            <h6>Never do anything out of hunger. Even eating. <br>- Frank Semyon</h6>
+        </div>
+        <div class="col-4">
+            <%= image_tag "uncut-gems.png", style: 'height:50%;width:auto;' %>
+        </div>
+    </div>
+</div>
