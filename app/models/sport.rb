@@ -2,8 +2,8 @@ class Sport < ApplicationRecord
     has_many :events
 
 
-    def display
-        "#{sport_name} - #{sub_name}"
+    def display(n = 35) #-1 for full
+        "#{sport_name} - #{sub_name}"[0..n]
     end
     
     def has_competitors?
@@ -16,13 +16,13 @@ class Sport < ApplicationRecord
 
     def self.get_names(with = nil, field = "sport_name", filter = nil)
         case with
-        when "Comp"
-            return Sport.all.where(filter).select{|x| x.has_competitors?}.pluck(field).uniq
-        when "Event"
-            return Sport.all.where(filter).select{|x| x.has_events?}.pluck(field).uniq
-        else
-            return Sport.all.where(filter).pluck(field).uniq
-        end
+            when "Comp"
+                return Sport.all.where(filter).select{|x| x.has_competitors?}.pluck(field).uniq
+            when "Event"
+                return Sport.all.where(filter).select{|x| x.has_events?}.pluck(field).uniq
+            else
+                return Sport.all.where(filter).pluck(field).uniq
+            end
     end
 
    
