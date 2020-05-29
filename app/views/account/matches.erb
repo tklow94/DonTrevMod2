@@ -1,0 +1,15 @@
+<h3>My Events:</h3>
+<% unless @user.my("Event").empty? %>
+
+    <div>
+    <% @user.my("Event").each do |e| %>
+        <a href ="<%= remove_track_path(kind: 'Event', model_id: e.id) %>"><%= image_tag "delete-person.png", size: "20x20" %></a>
+        <%= link_to e.display, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h6>Not Tracking Any Events</h6>
+<% end %>
+<%= link_to "Track Events by Sport", choose_events_path %>
+</div>

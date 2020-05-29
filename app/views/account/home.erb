@@ -1,62 +1,28 @@
-<h3>My Favorite Teams/Players:</h3>
-<% unless @user.my("Comp").empty? %>
-
-    <div>
-    <% @user.my("Comp").each do |e| %>
-        <%= link_to "Delete!", remove_track_path(kind: "Comp", model_id: e.id), method: :post %>
-        <%= link_to e.name, e %><br />
-
-    <% end %>
-
-<% else %>
-    <h6>Not Tracking Any Competitors</h6>
-<% end %>
-<%= link_to "Track Players and Teams", choose_competitors_path %>
-</div>
-
-<h3>My Events:</h3>
-<% unless @user.my("Event").empty? %>
-
-    <div>
-    <% @user.my("Event").each do |e| %>
-        <%= link_to "Delete!", remove_track_path(kind: "Event", model_id: e.id), method: :post %>
-        <%= link_to e.display, e %><br />
-
-    <% end %>
-
-<% else %>
-    <h6>Not Tracking Any Events</h6>
-<% end %>
-<%= link_to "Track Events by Sport", choose_events_path %>
-</div>
-
-<h3>My Sports:</h3>
-<% unless @user.my("Sport").empty? %>
-
-    <div>
-    <% @user.my("Sport").each do |e| %>
-
-        <%= link_to e.display, e %><br />
-
-    <% end %>
-
-<% else %>
-    <h6>Not Tracking Any Sports</h6>
-<% end %>
-<%= link_to "Follow a New Sport", choose_sports_path %>
-</div>
-
-<h3>Wagers I'm Following:</h3>
-<% unless @user.my("Market").empty? %>
-
-    <div>
-    <% @user.my("Market").each do |e| %>
-
-        <%= link_to e.description, e %><br />
-
-    <% end %>
-
-<% else %>
-    <h6>Not Tracking Any Wagers</h6>
-<% end %>
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="col-5">
+            <br><br><br>
+            <h3>Uncut (Ruby) Gems</h3>
+            <h5>a Flatiron Mod2 Project</h5>
+            <h5>Trevor Low <%= image_tag "ruby.png", size: "25x25" %> Don Mallory</h5>
+            <br>
+            <p>A project that provides access to real-life wagering market data, courtesy of bovada.lv.  This site is for educational
+                purposes only (for now.)
+            </p>
+            <br>
+            <h3>Currently Serving:</h3>
+            <h6><%= Sport.count %> Sport categories, including</h6>
+            <h6> specifics on <%= Competitor.count %> teams and players</h6>
+            <h6>involved in <%= Event.count %> matches and events.</h6>
+            <h6>You will find <%= Market.count %> wagers listed</h6>
+            <h6>correlating to .... <%= Outcome.count %> outcomes! </h6>
+            <br>
+            <h6>Enjoy!</h6>
+            <br><br><br>
+            <h6>Never do anything out of hunger. Even eating. <br>- Frank Semyon</h6>
+        </div>
+        <div class="col-4">
+            <%= image_tag "uncut-gems.png", style: 'height:50%;width:auto;' %>
+        </div>
+    </div>
 </div>
