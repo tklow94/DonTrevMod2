@@ -14,7 +14,7 @@ class CompetitorsController < ApplicationController
     end
 
     def filter
-        @selected = params[:sport_name], params[:sub_name]  #gross, refactor into only GET ... no POST
+        @selected = params[:sport_name], params[:sub_name]  
         redirect_to choose_competitors_path(sport_name: @selected[0], sub_name: @selected[1])
     end
 

@@ -10,10 +10,16 @@ class Sport < ApplicationRecord
         !!Competitor.find_by(sport_name: sport_name, sub_name: sub_name)
     end
 
+    def has_events?
+        events.any?
+    end
+
     def self.get_names(with = nil, field = "sport_name", filter = nil)
         case with
         when "Comp"
             return Sport.all.where(filter).select{|x| x.has_competitors?}.pluck(field).uniq
+        when "Event"
+            return Sport.all.where(filter).select{|x| x.has_events?}.pluck(field).uniq
         else
             return Sport.all.where(filter).pluck(field).uniq
         end
