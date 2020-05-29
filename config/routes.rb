@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   post '/account/wipe_assoc' => 'account#wipe_assoc', as: 'wipe_assoc'
   get '/account/data' => 'account#data_maintenance', as: 'data_main'
 
+  post '/account/purge_data' => 'account#purge_data', as: 'purge_data'
+
   resources :sports
   resources :events, only: [:show]
   resources :competitors, only: [:show]
