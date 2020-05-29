@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   post '/watchlist/add' => 'account#add_watch_list', as: 'track_new'
   get '/watchlist/remove' => 'account#remove_watch_list', as: 'remove_track'
 
+  post '/account/wipe_assoc' => 'account#wipe_assoc', as: 'wipe_assoc'
+  get '/account/data' => 'account#data_maintenance', as: 'data_main'
+
   resources :sports
   resources :events, only: [:show]
   resources :competitors, only: [:show]

@@ -23,6 +23,11 @@ class AccountController < ApplicationController
         redirect_back fallback_location: home_path
     end
 
+    def wipe_assoc
+        current_user.watch_lists.destroy_all
+        go_home
+    end
+
 private
     def set_user
         @user = current_user
