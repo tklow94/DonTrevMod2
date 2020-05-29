@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   # root 'home#index'
   resources :users
 
+  get '/' => 'welcomes#index'
   get '/welcome' => 'welcomes#index'
-
+  
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
 
   get '/choose/competitors' => 'competitors#display'
   post '/choose/competitors' => 'competitors#filter'
+
+  get '/choose/events' => 'events#display'
+  post '/choose/events' => 'events#filter'
 
   post '/watchlist/add' => 'account#add_watch_list', as: 'track_new'
   get '/watchlist/remove' => 'account#remove_watch_list', as: 'remove_track'

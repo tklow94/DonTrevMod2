@@ -1,0 +1,35 @@
+<h3>Track Upcoming Events</h3>
+<%= form_tag choose_events_path do %>
+    <div>
+        <%= label_tag "Sport" %>
+        <%= select_tag :sport_name, options_for_select(@sports, @selected[0]) %>
+   
+        <%= label_tag "Subset (league)" %>
+        <%= select_tag :sub_name, options_for_select(@subs, @selected[1]) %>
+    </div>
+    <div>
+        <%= submit_tag "Filter by Sport and Subset Name" %>
+    </div>
+<% end %>
+<br><br>
+<h5>Upcoming Events for <%= @selected[0] %> => <%= @selected[1] %></h5>
+<%= form_tag track_new_path do %>
+    <%= hidden_field_tag 'kind', 'Event'%>
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Wagers Listed</th>
+            <th><%= submit_tag "Follow" %></th>
+        </tr>
+    <% @events.each do |e| %>
+        <tr>
+            <td><%= link_to e.description, e %></td>
+            <td><%= e.markets.count %></td>
+            <td>
+                <%= check_box_tag 'model_ids[]', e.id %>
+            </td>
+        </tr>
+
+    <% end %>
+    </table>
+<% end %>
