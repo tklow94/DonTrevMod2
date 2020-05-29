@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   get '/account/data' => 'account#data_maintenance', as: 'data_main'
 
   post '/account/purge_data' => 'account#purge_data', as: 'purge_data'
-
+  
+  resources :markets, only: [:show]
   resources :sports
   resources :events, only: [:show]
   resources :competitors, only: [:show]

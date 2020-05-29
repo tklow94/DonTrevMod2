@@ -3,7 +3,7 @@
 <h6>Bovada ID: <%= @comp.bovada_id %></h6>
 <br><br>
 <h4>Upcoming Events</h4>
-
+<%= form_tag  track_new_path(kind: 'Event') do %>
 <table>
     <tr>
         <th width = 225>Subset / League / Type</th>
@@ -15,10 +15,11 @@
     <% @comp.events.each do |e| %>
         <tr>
             <td><%= e.sport.sub_name %></td>
-            <td><%= link_to e.description, e %></td>
+            <td><%= link_to e.description, e %><%= image_submit_tag 'add-icon.png', width: '16', height: '16', name: e.id %></td>
             <td><%= e.time_until_start %></td>
             <td><%= e.markets.count %></td>
             <td><%= e.time_since_updated %></td>
         </tr>
     <% end %>
 </table>
+<% end %>

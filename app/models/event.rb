@@ -8,8 +8,9 @@ class Event < ApplicationRecord
     belongs_to :sport
 
 
-    def display
+    def full_display
         "#{description} * #{sport.display} * #{format_start}"
+        trunc_pad(sport.display, 50) + trunc_pad(description, 40) + format_start
     end
 
     def url

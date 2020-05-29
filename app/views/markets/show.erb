@@ -1,0 +1,74 @@
+<%= form_tag  track_new_path(kind: 'Event', model_id: @event.id) do %>
+    <h3>
+        <%= link_to @event.description, @event %>
+        <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %>
+    </h3> 
+<% end %>
+
+<h4> 
+    <%= form_tag  track_new_path(kind: 'Sport', model_id: @sport.id) do %>
+    Sport: <%= link_to @sport.display(100), @sport %> 
+    <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
+    <% end %>  
+</h4>
+<h6>Starts In: <%= @event.time_until_start %></h6>
+<h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url, target: :_blank %></h6>
+
+<br>
+<h4>Wager Info</h4>
+<table>
+    <tr>
+        <th width = 100>Type</th>
+        <th width = 100>Period</th>
+        <th width = 500>Description</th>
+        <th width = 350>Outcomes</th>
+        <th>Price</th>
+    </tr>
+        <tr>
+            <td><%= @market.market_type %></td>
+            <td><%= @market.period %></td>
+            <td><%= link_to @market.description, @market %><%= image_submit_tag 'add-icon.png', width: '16', height: '16', name: @market.id %></td>
+            <% @market.outcomes.each do |o| %>
+                <td><%= o.description %></td>
+                <td><%= o.price(session) %></td>
+            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+            <% end %>
+        </tr>
+</table>
+
+<br><br>
+
+<% unless @other_markets.empty? %>
+    <h4>Other Wagers for this Event</h4>
+    <%= form_tag  track_new_path(kind: 'Market') do %>
+    <table>
+        <tr>
+            <th width = 100>Type</th>
+            <th width = 100>Period</th>
+            <th width = 500>Description</th>
+            <th width = 350>Outcomes</th>
+            <th>Price</th>
+        </tr>
+        <% @event.markets.each do |e| %>
+            <tr>
+                <td><%= e.market_type %></td>
+                <td><%= e.period %></td>
+                <td><%= link_to e.description, e %><%= image_submit_tag 'add-icon.png', width: '16', height: '16', name: e.id %></td>
+                <% e.outcomes.each do |o| %>
+                    <td><%= o.description %></td>
+                    <td><%= o.price(session) %></td>
+                </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                <% end %>
+            </tr>
+        <% end %>
+    </table>
+    <% end %>  
+<% end %>

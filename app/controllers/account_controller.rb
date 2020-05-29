@@ -26,10 +26,12 @@ class AccountController < ApplicationController
 
     def wipe_assoc
         current_user.watch_lists.destroy_all
-        go_home
+        redirect_back fallback_location: home_path
     end
 
     def data_maintenance
+        byebug
+        @assoc_string = pluralize(current_user.watch_lists.count, "association")
         @not_in_future = query_build
         @one_day_old = query_build(1.day)
         @one_hour_old = query_build(1.hour)

@@ -3,7 +3,7 @@
         <div class="col-5">
             <br><br><br>
             <%= form_tag wipe_assoc_path do %>
-                <h5>Select the button to PERMANENTLY erase any associations between Uncut (Ruby) Gems data and your user account.</h5>
+                <h5>Select the button to PERMANENTLY erase the  <%= @assoc_string %> between Uncut (Ruby) Gems data and your user account.</h5>
                 <%= submit_tag "Delete Associations to Data"%>
             <% end %>
             <br><br><br>
