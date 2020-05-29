@@ -1,4 +1,4 @@
-<h3>Start Following  Team(s) / Player(s)</h3>
+<h3>Start Following Teams / Players</h3>
 <%= form_tag choose_competitors_path do %>
     <div>
         <%= label_tag "Sport" %>
@@ -16,14 +16,16 @@
     <%= hidden_field_tag 'kind', 'Comp'%>
     <table>
         <tr>
-            <th>Name</th>
-            <th># of Bets Available</th>
+            <th width=300>Name</th>
+            <th width=100>Matches</th>
+            <th width=100>Bets</th>
             <th><%= submit_tag "Follow" %></th>
         </tr>
     <% @comp.each do |c| %>
         <tr>
             <td><%= link_to c.name, c %></td>
             <td><%= c.events.count %></td>
+            <td><%= c.assoc_wagers %></td>
             <td>
                 <%= check_box_tag 'model_ids[]', c.id %>
             </td>

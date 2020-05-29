@@ -5,6 +5,8 @@
     <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
     <% end %>  
 </h4>
+
+<h6>Starts In: <%= @event.time_until_start %></h6>
 <h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url, target: :_blank %></h6>
 <br><br>
 
