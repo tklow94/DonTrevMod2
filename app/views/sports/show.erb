@@ -1,0 +1,28 @@
+<%= form_tag  track_new_path(kind: 'Sport', model_id: @sport.id) do %>
+<h3>Sport: <%= @sport.sport_name %></h3>
+<h4> 
+    Sub Name: <%= @sport.sub_name %>
+    <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
+    <% end %>  
+</h4>
+
+<br>
+<h4>Events</h4><br>
+<%= form_tag  track_new_path(kind: 'Event') do %>
+    <table>
+        <tr>
+            <th width = 250>Description</th>
+            <th width = 175>Starts In</th>
+            <th width = 350>Wagers Listed</th>
+            <th>Wagering Info Last Updated</th>
+        </tr>
+        <% @events.each do |e| %>
+        <tr>
+            <td><%= link_to e.description, e %><%= image_submit_tag 'add-icon.png', width: '16', height: '16', name: e.id %> </td>
+            <td><%= e.time_until_start %></td>
+            <td><%= e.markets.count %></td>
+            <td><%= e.time_since_updated %></td>
+        </tr>
+        <% end %>
+    </table>
+<% end %>  

@@ -6,9 +6,14 @@ class AccountController < ApplicationController
             params["model_ids"].each do |f|
                 current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: f)
             end
+        elsif params["model_id"]
+            current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: params[:model_id])
+        else
+            hit = params.keys.find{|x| x.split(".").count > 1}
+            current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: hit.split(".x")[0]) if hit
         end
         #do we need error checking?
-        go_home
+        redirect_back fallback_location: home_path
     end
 
     def remove_watch_list

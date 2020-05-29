@@ -31,7 +31,7 @@ class Event < ApplicationRecord
 private
     def time_calc(value, reverse = false)
         delta = (value - Time.now).to_i
-        return "Started" if delta <= 0 && !reverse
+        return "- - - -" if delta <= 0 && !reverse
         delta = delta.abs if reverse
         res = []
 

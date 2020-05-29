@@ -1,5 +1,10 @@
 <h3>Description: <%= @event.description %></h3>
-<h4>Sport: <%= @event.sport.sport_name %></h4>
+<h4> 
+    <%= form_tag  track_new_path(kind: 'Sport', model_id: @event.sport.id) do %>
+    Sport: <%= @event.sport.sport_name %> 
+    <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
+    <% end %>  
+</h4>
 <h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url, target: :_blank %></h6>
 <h6>Bovada ID: <%= @event.bovada_id %></h6>
 <br><br>
