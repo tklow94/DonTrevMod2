@@ -1,7 +1,7 @@
 <%= form_tag  track_new_path(kind: 'Sport', model_id: @sport.id) do %>
-<h3>Sport: <%= @sport.sport_name %></h3>
+<h3>Sport: <%= link_to @sport.sport_name, choose_sports_path(@sport, sport_name: @sport.sport_name)%></h3>
 <h4> 
-    Sub Name: <%= @sport.sub_name %>
+    Sub Name: <%= link_to @sport.sub_name, @sport %>
     <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
     <% end %>  
 </h4>

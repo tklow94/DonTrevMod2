@@ -30,7 +30,6 @@ class AccountController < ApplicationController
     end
 
     def data_maintenance
-        byebug
         @assoc_string = pluralize(current_user.watch_lists.count, "association")
         @not_in_future = query_build
         @one_day_old = query_build(1.day)

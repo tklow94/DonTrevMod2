@@ -1,7 +1,7 @@
 <h3><%= link_to @event.description, @event %></h3>
 <h4> 
     <%= form_tag  track_new_path(kind: 'Sport', model_id: @event.sport.id) do %>
-    Sport: <%= link_to @sport.display(100) %> 
+    Sport: <%= link_to @sport.display(100), @sport %> 
     <%= image_submit_tag 'add-icon.png', width: '20', height: '20' %> 
     <% end %>  
 </h4>

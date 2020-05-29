@@ -7,9 +7,11 @@
         <%= link_to e.full_display, e %><br />
 
     <% end %>
+    <%= link_to "Track Events by Sport", choose_events_path %>
 
 <% else %>
     <h6>Not Tracking Any Events</h6>
+    <%= link_to "Get Started", choose_events_path %>
+
 <% end %>
-<%= link_to "Track Events by Sport", choose_events_path %>
 </div>

@@ -1,4 +1,4 @@
-<h3>My Favorite Teams/Players:</h3>
+<h3>My Favorite Teams and Players:</h3>
 <% unless @user.my("Comp").empty? %>
 
     <div>
@@ -7,9 +7,10 @@
         <%= link_to e.name, e %><br />
 
     <% end %>
+    <%= link_to "Track Players and Teams", choose_competitors_path %>
 
 <% else %>
-    <h6>Not Tracking Any Competitors</h6>
+    <h6>Not Tracking Any Teams or Players</h6>
+    <%= link_to "Get Started", choose_competitors_path %>
 <% end %>
-<%= link_to "Track Players and Teams", choose_competitors_path %>
 </div>
