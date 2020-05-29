@@ -52,12 +52,11 @@
     <div>
     <% @user.my("Market").each do |e| %>
 
-        <%= link_to e.description, "www.google.com" %><br />
+        <%= link_to e.description, e %><br />
 
     <% end %>
 
 <% else %>
     <h6>Not Tracking Any Wagers</h6>
 <% end %>
-<%= link_to "Find Wagers By..." %>
 </div>

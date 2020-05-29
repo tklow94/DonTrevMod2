@@ -2,8 +2,13 @@ class Sport < ApplicationRecord
     has_many :events
 
 
-    def display(n = 35) #-1 for full
-        "#{sport_name} - #{sub_name}"[0..n]
+    def display(n = 40)    
+        disp = "#{sport_name} - #{sub_name}"
+        if disp.length > n
+            return disp[0..n] + "..."
+        else
+            return disp
+        end
     end
     
     def has_competitors?
