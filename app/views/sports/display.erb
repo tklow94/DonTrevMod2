@@ -1,0 +1,30 @@
+<h3>Start Following a Sport </h3>
+<%= form_tag choose_sports_path do %>
+    <div>
+        <%= label_tag "Sport" %>
+        <%= select_tag :sport_name, options_for_select(@sports, @selected) %>
+    </div>
+    <%= submit_tag "Filter by Sport Name" %>
+<% end %>
+
+<br>
+<%= form_tag track_new_path do %>
+    <%= hidden_field_tag 'kind', 'Sport'%>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th># of Bets Available</th>
+            <th><%= submit_tag "Follow" %></th>
+        </tr>
+    <% @sports_objs.each do |s| %>
+        <tr>
+            <td><%= link_to s.sub_name, s %></td>
+            <td><%= s.events.count %></td>
+            <td>
+                <%= check_box_tag 'model_ids[]', s.id %>
+            </td>
+        </tr>
+
+    <% end %>
+    </table>
+<% end %>
