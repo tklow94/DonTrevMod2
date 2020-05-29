@@ -1,6 +1,7 @@
 class SportsController < ApplicationController
     def show
-        @market = Market.find(params[:id])
+        @sport = Sport.find(params[:id])
+        @markets = Sport.markets
     end
 
     def display

@@ -1,6 +1,6 @@
 <h3>Description: <%= @event.description %></h3>
 <h4>Sport: <%= @event.sport.sport_name %></h4>
-<h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url%></h6>
+<h6><%= link_to "Open Event Link on Bovada.lv (new window)", @event.url, target: :_blank %></h6>
 <h6>Bovada ID: <%= @event.bovada_id %></h6>
 <br><br>
 
@@ -21,7 +21,7 @@
             <td><%= e.description %></td>
             <% e.outcomes.each do |o| %>
                 <td><%= o.description %></td>
-                <td><%= o.american %></td>
+                <td><%= o.price(session) %></td>
             </tr>
                 <tr>
                     <td></td>

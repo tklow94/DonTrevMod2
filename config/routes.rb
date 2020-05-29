@@ -23,16 +23,18 @@ Rails.application.routes.draw do
   post '/choose/events' => 'events#filter'
   
   get '/choose/sports' => 'sports#display'
-  post '/choose/sports' => 'sports#filter'
+  get '/choose/sports' => 'sports#display'
+  
+  get '/choose/markets' => 'markets#display'
+  post '/choose/markets' => 'markets#filter'
 
-
+  
 
   post '/watchlist/add' => 'account#add_watch_list', as: 'track_new'
   get '/watchlist/remove' => 'account#remove_watch_list', as: 'remove_track'
 
   resources :sports
   resources :events, only: [:show]
-  resources :bets
   resources :competitors, only: [:show]
 
 end

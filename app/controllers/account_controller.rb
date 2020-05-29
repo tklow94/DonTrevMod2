@@ -4,8 +4,10 @@ class AccountController < ApplicationController
     end
 
     def add_watch_list
-        params["model_ids"].each do |f|
-            current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: f)
+        if params["model_ids"]
+            params["model_ids"].each do |f|
+                current_user.watch_lists.find_or_create_by(kind: params[:kind], model_id: f)
+            end
         end
         #do we need error checking?
         go_home
