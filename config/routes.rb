@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  # get 'home/index'
-  # root 'home#index'
   resources :users
 
   get '/' => 'welcomes#index'
@@ -15,6 +13,11 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   
   get '/account' => 'account#home', as: 'home'
+  get '/account/matches', as: 'matches'
+  get '/account/sports', as: 'sports'
+  get '/account/teams', as: 'teams'
+  get '/account/wagers', as: 'wagers'
+
 
   get '/choose/competitors' => 'competitors#display'
   post '/choose/competitors' => 'competitors#filter'
@@ -24,11 +27,6 @@ Rails.application.routes.draw do
   
   get '/choose/sports' => 'sports#display'
   get '/choose/sports' => 'sports#display'
-  
-  get '/choose/markets' => 'markets#display'
-  post '/choose/markets' => 'markets#filter'
-
-  
 
   post '/watchlist/add' => 'account#add_watch_list', as: 'track_new'
   get '/watchlist/remove' => 'account#remove_watch_list', as: 'remove_track'

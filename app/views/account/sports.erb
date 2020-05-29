@@ -1,0 +1,15 @@
+<h3>My Sports:</h3>
+<% unless @user.my("Sport").empty? %>
+
+    <div>
+    <% @user.my("Sport").each do |e| %>
+
+        <%= link_to e.display, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h6>Not Tracking Any Sports</h6>
+<% end %>
+<%= link_to "Follow a New Sport", choose_sports_path %>
+</div>

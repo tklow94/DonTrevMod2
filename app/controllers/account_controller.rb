@@ -1,7 +1,5 @@
 class AccountController < ApplicationController
-    def home
-        @user = current_user
-    end
+    before_action :set_user   
 
     def add_watch_list
         if params["model_ids"]
@@ -17,5 +15,10 @@ class AccountController < ApplicationController
         gotcha = current_user.watch_lists.find_by(kind: params[:kind], model_id: params[:model_id].to_i)
         gotcha.destroy if gotcha
         go_home
+    end
+
+private
+    def set_user
+        @user = current_user
     end
 end

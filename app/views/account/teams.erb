@@ -1,0 +1,15 @@
+<h3>My Favorite Teams/Players:</h3>
+<% unless @user.my("Comp").empty? %>
+
+    <div>
+    <% @user.my("Comp").each do |e| %>
+        <%= link_to "Delete!", remove_track_path(kind: "Comp", model_id: e.id), method: :post %>
+        <%= link_to e.name, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h6>Not Tracking Any Competitors</h6>
+<% end %>
+<%= link_to "Track Players and Teams", choose_competitors_path %>
+</div>

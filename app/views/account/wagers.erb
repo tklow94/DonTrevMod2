@@ -1,0 +1,14 @@
+<h3>Wagers I'm Following:</h3>
+<% unless @user.my("Market").empty? %>
+
+    <div>
+    <% @user.my("Market").each do |e| %>
+
+        <%= link_to e.description, e %><br />
+
+    <% end %>
+
+<% else %>
+    <h6>Not Tracking Any Wagers</h6>
+<% end %>
+</div>
